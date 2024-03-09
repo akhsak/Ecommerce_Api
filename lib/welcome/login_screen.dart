@@ -1,145 +1,146 @@
-// ignore_for_file: prefer_final_fields, prefer_const_constructors, no_leading_underscores_for_local_identifiers, must_be_immutable, use_build_context_synchronously, prefer_const_declarations
-
-import 'package:ecommerce_app/welcome/splash_screen.dart';
+import 'dart:developer';
+import 'package:ecommerce_app/controller/store_provider.dart';
+import 'package:ecommerce_app/controller/user_provider.dart';
+import 'package:ecommerce_app/model/user_model.dart';
+import 'package:ecommerce_app/welcome/sign_up_page.dart';
+import 'package:ecommerce_app/widget/bottom_bar.dart';
+import 'package:ecommerce_app/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 
-class ScreenLogin extends StatelessWidget {
-  ScreenLogin({Key? key}) : super(key: key);
-
-  final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
-  bool _isDataMatched = true;
-  final _formKey = GlobalKey<FormState>();
-  
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(  
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Image.asset(
-                      'assets/Investment data-rafiki.png', 
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                       
-                        const SizedBox(height: 20),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            controller: _usernameController,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.person),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              hintText: 'Username',
-                            ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter username';
-                              } else {
-                                return null;
-                              }
-                            },
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    Size mediaQuery = MediaQuery.of(context).size;
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: [
+            Expanded(
+                child: Image.asset('assets/babys_login.png.png',
+                    width: mediaQuery.width * 0.7,
+                    height: mediaQuery.height * 0.4)),
+            Expanded(
+                child: Container(
+              height: mediaQuery.height * 0.3,
+              width: mediaQuery.width * 0.5,
+              padding: const EdgeInsets.only(bottom: 35),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Card(
+                  elevation: 5,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 15),
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        children: [
+                          Text(
+                            'LOGIN',
+                            style: GoogleFonts.abel(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Color.fromARGB(255, 199, 51, 142),
+                                letterSpacing: 5),
                           ),
-                        ),
-                        const SizedBox(height: 20),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            controller: _passwordController,
+                          const SizedBox(height: 10),
+                          CustomTextFormField(
+                            controller: userProvider.usernameController,
+                            labelText: 'enter username',
+                          ),
+                          const SizedBox(height: 10),
+                          CustomTextFormField(
+                            controller: userProvider.passwordController,
+                            labelText: 'enter password',
                             obscureText: true,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.lock),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
+                          ),
+                          const SizedBox(height: 20),
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Color.fromARGB(255, 199, 51, 142),
                               ),
-                              hintText: 'Password',
-                            ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter password';
-                              } else {
-                                return null;
-                              }
+                              onPressed: () {
+                                if (formKey.currentState!.validate()) {
+                                  userLogin(context);
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => BottomBar()));
+                                }
+                              },
+                              child: const Text(
+                                'LOGIN',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w800),
+                              )),
+                          const SizedBox(height: 15),
+                          const Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Don't have an account ?",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignUpScreen()));
                             },
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        Visibility(
-                          visible: !_isDataMatched,
-                          child: Text(
-                            'Username password does not match',
-                            style: TextStyle(
-                              color: Colors.red,
+                            child: const Text(
+                              'Sign Up',
+                              style: TextStyle(color:Color.fromARGB(255, 199, 51, 142)),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 20),
-                        
-                        ElevatedButton.icon(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              checkLogin(context);
-                            } else {
-                            }
-                          },
-                          icon:
-                           Icon(Icons.login),
-                          label: Text('Login'),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
-          ),
+            ))
+          ],
         ),
       ),
     );
   }
 
-  Future checkLogin(BuildContext ctx) async {
-    final username = _usernameController.text;
-    final password = _passwordController.text;
-    if (username == password) {
-      final _srdprf = await SharedPreferences.getInstance();
-      await _srdprf.setBool('your_actual_key_name_here', true);
+  userLogin(context) async {
+    final getUserProvider = Provider.of<UserProvider>(context, listen: false);
+    final getStoreProvider = Provider.of<StoreProvider>(context, listen: false);
+    final userInfo = UserModel(
+      username: getUserProvider.usernameController.text.toString(),
+      password: getUserProvider.passwordController.text.toString(),
+    );
 
+    try {
+      await getUserProvider.userLogin(userInfo);
+      final tokenId = await getStoreProvider.getValues('tokenId');
+      if (getUserProvider.userStatusCode == "200" &&
+          tokenId?.isNotEmpty == true) {
+        await getUserProvider.setUserData();
+       // clearControllers(getUserProvider);
 
-      Navigator.of(ctx).pushReplacement(
-        MaterialPageRoute(builder: (ctx) => SplashScreen()),
-      );
-    } else {
-
-      final _errorMessage = 'Username password does not match';
-
-      ScaffoldMessenger.of(ctx).showSnackBar(
-        SnackBar(
-          behavior: SnackBarBehavior.floating,
-          backgroundColor: Colors.red,
-          margin: EdgeInsets.all(10),
-          content: Text(_errorMessage),
-          duration: Duration(seconds: 5),
-        ),
-      );
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Bottombar()));
+      } else if (getUserProvider.userStatusCode == '500') {}
+    } catch (e) {
+      log('Error during user login: $e');
     }
   }
 }

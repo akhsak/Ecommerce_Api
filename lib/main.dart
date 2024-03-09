@@ -1,5 +1,7 @@
 import 'package:ecommerce_app/controller/bottom.provider.dart';
-import 'package:ecommerce_app/widget/bottom_bar.dart';
+import 'package:ecommerce_app/controller/store_provider.dart';
+import 'package:ecommerce_app/controller/user_provider.dart';
+import 'package:ecommerce_app/welcome/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,11 +15,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) =>BottomProvider()), 
+      ChangeNotifierProvider(create: (context) =>BottomProvider()),
+      ChangeNotifierProvider(create: (context)=>UserProvider()),
+      ChangeNotifierProvider(create: (context)=>StoreProvider()) 
     ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:Bottombar() ,
+        home:SplashScreen() ,
       ),
     );
   }
