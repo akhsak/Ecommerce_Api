@@ -6,18 +6,15 @@ import 'package:ecommerce_app/view/wishlist_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
 class Bottombar extends StatelessWidget {
   Bottombar({
     super.key,
   });
 
   List pages = [
-     HomePage(),
-     WishListPage(),
-     SettingsPage(),
-
-    
+    HomePage(),
+    WishListPage(),
+    SettingsPage(),
   ];
 
   @override
@@ -31,8 +28,8 @@ class Bottombar extends StatelessWidget {
           padding: const EdgeInsets.all(22.10),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: Consumer<BottomProvider>(builder: (context, value, child) => 
-               BottomNavigationBar(
+            child: Consumer<BottomProvider>(
+              builder: (context, value, child) => BottomNavigationBar(
                 unselectedFontSize: 0,
                 type: BottomNavigationBarType.fixed,
                 onTap: value.onTap,
@@ -65,7 +62,6 @@ class Bottombar extends StatelessWidget {
                     ),
                     label: 'ˢᵉᵗᵗᶦⁿᵍˢ',
                   ),
-                 
                 ],
               ),
             ),
@@ -76,7 +72,6 @@ class Bottombar extends StatelessWidget {
             bottom: 5,
             top: 25,
           ),
-         
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),

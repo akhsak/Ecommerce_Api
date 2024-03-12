@@ -9,11 +9,11 @@ Widget searchTextFormField({onChanged, controller}) {
         hintText: 'Search...',
         labelStyle: const TextStyle(color: Colors.grey),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.yellow),
+          borderSide: const BorderSide(color: Color.fromARGB(255, 199, 51, 142)),
           borderRadius: BorderRadius.circular(30),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.yellow),
+          borderSide: const BorderSide(color: Color.fromARGB(255, 199, 51, 142)),
           borderRadius: BorderRadius.circular(30),
         ),
         border: OutlineInputBorder(

@@ -1,42 +1,4 @@
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
 
-// class Homepage extends StatelessWidget {
-//   const Homepage({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar:AppBar(
-        
-//         actions: [
-//           IconButton(onPressed: (){}, icon:Icon(Icons.search),),
-//           IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart))
-//         ],
-//       ) ,
-//       body: Column(
-//         children: [
-//           GridView.builder(gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2
-//           ,mainAxisSpacing: 10,
-//           crossAxisSpacing: 10,
-//           childAspectRatio: 1.0) ,itemCount: 10, itemBuilder:(BuildContext context,int  index) {
-//             return Container(
-//               color: Colors.blue,
-//               child: Center(
-//                 child: Text(
-//                   'items $index',
-//                   style: TextStyle(color: Colors.white),
-//                 ),
-//               ),
-//             );
-            
-//           }) 
-//         ],
-//       ),
-//       );
-    
-//   }
-// }
 
 // ignore_for_file: use_key_in_widget_constructors
 
