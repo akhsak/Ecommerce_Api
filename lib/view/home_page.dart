@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatelessWidget {
@@ -8,7 +9,10 @@ class Homepage extends StatelessWidget {
     return Scaffold(
       appBar:AppBar(
         
-        actions: [],
+        actions: [
+          IconButton(onPressed: (){}, icon:Icon(Icons.search),),
+          IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart))
+        ],
       ) ,
     );
   }

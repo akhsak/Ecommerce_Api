@@ -134,7 +134,7 @@ class LoginScreen extends StatelessWidget {
       if (getUserProvider.userStatusCode == "200" &&
           tokenId?.isNotEmpty == true) {
         await getUserProvider.setUserData();
-       // clearControllers(getUserProvider);
+        clearController(getUserProvider);
 
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Bottombar()));
@@ -142,5 +142,10 @@ class LoginScreen extends StatelessWidget {
     } catch (e) {
       log('Error during user login: $e');
     }
+  }
+    clearController(UserProvider controller){
+    controller.usernameController.clear();
+    controller.emailController.clear();
+    controller.passwordController.clear();
   }
 }

@@ -226,16 +226,17 @@ class SignUpScreen extends StatelessWidget {
                             //   controller: nameController,
                             //   labelText: 'Name',
                             // ),
+                             CustomTextFormField(
+                              controller: usernameController,
+                              labelText: 'Username',
+                            ),
                             const SizedBox(height: 10),
                             CustomTextFormField(
                               controller: emailController,
                               labelText: 'E-mail',
                             ),
                             const SizedBox(height: 10),
-                            CustomTextFormField(
-                              controller: usernameController,
-                              labelText: 'Username',
-                            ),
+                           
                             const SizedBox(height: 10),
                             CustomTextFormField(
                               controller: passwordController,
@@ -278,14 +279,19 @@ class SignUpScreen extends StatelessWidget {
   createUser(context) async {
     final getProvider = Provider.of<UserProvider>(context, listen: false);
     final userInfo = UserModel(
-     // name: getProvider.nameController.text.toString(),
+   //  name: getProvider.nameController.text.toString(),
       email: getProvider.emailController.text.toString(),
       username: getProvider.usernameController.text.toString(),
       password: getProvider.passwordController.text.toString(),
     );
     await getProvider.createUser(userInfo);
     if (getProvider.createdStatusCode == "201") {
-     // clearControllers(getProvider);
+      clearController(getProvider);
     } else {}
+  }
+      clearController(UserProvider controller){
+    controller.usernameController.clear();
+    controller.emailController.clear();
+    controller.passwordController.clear();
   }
 }
