@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, must_be_immutable
-import 'package:ecommerce_app/controller/bottom.provider.dart';
+import 'package:ecommerce_app/controller/bottom_provider.dart';
 import 'package:ecommerce_app/view/home_page.dart';
 import 'package:ecommerce_app/view/settings_page.dart';
 import 'package:ecommerce_app/view/wishlist_page.dart';
@@ -13,7 +13,7 @@ class Bottombar extends StatelessWidget {
   });
 
   List pages = [
-     Homepage(),
+     HomePage(),
      WishListPage(),
      SettingsPage(),
 

@@ -6,9 +6,14 @@ import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     Size mediaQuery = MediaQuery.of(context).size;
@@ -60,8 +65,7 @@ class SplashScreen extends StatelessWidget {
                         SizedBox(width: 10),
                         Icon(
                           Icons.arrow_forward,
-                          color:  Colors.white,
-                        )
+                          color:  Colors.white,                        )
                       ],
                     )),
               )

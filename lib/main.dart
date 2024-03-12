@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/controller/bottom.provider.dart';
+import 'package:ecommerce_app/controller/bottom_provider.dart';
 import 'package:ecommerce_app/controller/store_provider.dart';
 import 'package:ecommerce_app/controller/user_provider.dart';
 import 'package:ecommerce_app/welcome/splash_screen.dart';
