@@ -38,9 +38,9 @@ class WishListPage extends StatelessWidget {
                         final itemId = wishList.wishListItemId[index];
                         final product = productItem.productList[index];
                         final id = itemId;
-                        final allProductIds = productItem.productList
-                            .map((product) => product.id)
-                            .toList();
+                        //final allProductIds = productItem.productList
+                            //.map((product) => product.id)
+                           // .toList();
                         return Container(
                           height: mediaQuery.height * 0.2,
                           margin: const EdgeInsets.symmetric(
