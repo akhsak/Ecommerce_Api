@@ -13,8 +13,7 @@ class ProductContainer extends StatelessWidget {
   final product;
   final productId;
 
-  const ProductContainer({Key? key, this.product, this.productId})
-      : super(key: key);
+  const ProductContainer({super.key, this.product, this.productId});
 
   @override
   Widget build(BuildContext context) {
