@@ -37,17 +37,17 @@ class HomePage extends StatelessWidget {
                           searchProvider.searchController.text, context),
                       controller: searchProvider.searchController),
                   const SizedBox(width: 10),
-                  cartIconContainer(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CartScreen(),
-                        ),
-                      );
-                    },
-                  )
-                ],
+                  // cartIconContainer(
+                  //   onPressed: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //         builder: (context) => const CartScreen(),
+                //          ),
+                //       );
+                //     },
+                //   )
+                 ],
                ),
               const SizedBox(height: 20),
               textAmaranth(data: 'HOME', size: 30, weight: FontWeight.w700),
@@ -91,7 +91,7 @@ class HomePage extends StatelessWidget {
                               },
                               child: ProductContainer(
                                 product: product,
-                                productId: wishProduct,
+                                // productId: wishProduct,
                               ),
                             );
                           },
@@ -130,7 +130,7 @@ class HomePage extends StatelessWidget {
                                   ),
                                 );
                               },
-                              child: ProductContainer(product: product));
+                              child: ProductContainer(product: product ,));
                         },
                       );
                     }

@@ -5,16 +5,16 @@ import 'package:ecommerce_app/model/wishlist_model.dart';
 class WishListService {
   Dio dio = Dio();
   String? wishListStatuscode;
-  addToWishList(WishListModel product, String userId, String token) async {
+  addToWishList(WishListModel product, String userId) async {
     final url = 'http://localhost:9000/api/users/$userId/wishlist';
 
     try {
       Response response = await dio.post(
         url,
-        data: product.toJson(token)['data'],
-        options: Options(
-          headers: product.toJson(token)['headers'],
-        ),
+        data: product.toJson()['data'],
+        // options: Options(
+        //   headers: product.toJson(token)['headers'],
+        // ),
       );
 
       if (response.statusCode == 200) {
@@ -30,21 +30,19 @@ class WishListService {
     }
   }
 
-  getWishListProduct(WishListModel product, String userId, String token) async {
+  getWishListProduct( String userId,) async {
     final url = 'http://localhost:9000/api/users/$userId/wishlist';
 
     try {
       Response response = await dio.get(
         url,
-        options: Options(
-          headers: product.toJson(token)['headers'],
-        ),
+        
       );
 
       if (response.statusCode == 200) {
-        final List<dynamic> productId = response.data['data'] as List;
+        final List<dynamic> product = response.data['data'] as List;
 
-        return productId;
+        return product;
       } else {
         log('Unsuccessful. Status code: ${response.statusCode}');
         log('Response data: ${response.data}');
@@ -56,16 +54,16 @@ class WishListService {
   }
 
   deleteFromWishList(String productId, String userId, String token) async {
-    final url = 'http://localhost:3000/api/users/$userId/wishlist';
+    final url = 'http://localhost:9000/api/users/$userId/wishlist';
 
     try {
       Response response = await dio.delete(
         url,
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $token',
-          },
-        ),
+        // options: Options(
+        //   headers: {
+        //     'Authorization': 'Bearer $token',
+        //   },
+        // ),
       );
 
       if (response.statusCode == 200) {

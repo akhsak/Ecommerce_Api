@@ -5,15 +5,16 @@ import 'dart:developer';
 
 import 'package:ecommerce_app/controller/store_provider.dart';
 import 'package:ecommerce_app/controller/wishlist_provider.dart';
+import 'package:ecommerce_app/model/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 
 class ProductContainer extends StatelessWidget {
-  final product;
-  final productId;
+  final ProductModel? product;
+ 
 
-  const ProductContainer({super.key, this.product, this.productId});
+  const ProductContainer({super.key, this.product,});
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +36,14 @@ class ProductContainer extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.contain,
                   image: NetworkImage(
-                    product.image.toString(),
+                    product!.image.toString(),
                   ),
                 ),
               ),
             ),
           ),
           Text(
-            product.title ?? 'Unknown',
+            product!.title ?? 'Unknown',
             style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -50,9 +51,9 @@ class ProductContainer extends StatelessWidget {
             ),
           ),
           Text(
-            product.category ?? 'Unknown',
+            product!.category ?? 'Unknown',
             style: TextStyle(
-              color: product.category == 'men' ? Colors.blue : Colors.pink,
+              color: product!.category == 'men' ? Colors.blue : Colors.pink,
               fontSize: 12,
             ),
           ),
@@ -60,7 +61,7 @@ class ProductContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '₹ ${product.price.toString()}',
+                '₹ ${product!.price.toString()}',
                 style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -69,7 +70,9 @@ class ProductContainer extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () async {
-                  toWishList(context, productId);
+                  print(product!.id);
+                  
+                  toWishList(context, product!.id);
                 },
                 icon: const Icon(
                   Icons.favorite_outline,
@@ -90,7 +93,7 @@ class ProductContainer extends StatelessWidget {
     final wishProvider = Provider.of<WishListProvider>(context, listen: false);
 
     if (userId != null && token != null) {
-      wishProvider.addToWishList(product, userId, token);
+      wishProvider.addToWishList(product, userId,);
       if (wishProvider.wishListStatuscode == '200') {
         log("Product added to Wishlist");
       } else if (wishProvider.wishListStatuscode == '500') {
@@ -109,7 +112,7 @@ class ProductContainer extends StatelessWidget {
 
     if (userId != null && token != null) {
       wishProvider.addToWishList(productId.id, userId,
-          token); // Pass productId.id instead of productId
+          ); // Pass productId.id instead of productId
       if (wishProvider.wishListStatuscode == '200') {
         log("Product added to Wishlist");
       } else if (wishProvider.wishListStatuscode == '500') {

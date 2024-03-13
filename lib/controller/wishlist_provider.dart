@@ -8,9 +8,9 @@ class WishListProvider extends ChangeNotifier {
   List wishListItemId = [];
   String? wishListStatuscode;
   Future<void> addToWishList(
-      String productId, String userId, String token) async {
+      String productId, String userId) async {
     final product = WishListModel(id: productId);
-    await _wishListService.addToWishList(product, userId, token);
+    await _wishListService.addToWishList(product, userId);
 
     wishListStatuscode = _wishListService.wishListStatuscode;
     notifyListeners();
@@ -19,7 +19,7 @@ class WishListProvider extends ChangeNotifier {
   Future<void> getWishListProduct(String userId, String token) async {
     final product = WishListModel();
     wishListItemId =
-        await _wishListService.getWishListProduct(product, userId, token);
+        await _wishListService.getWishListProduct( userId);
     notifyListeners();
   }
 

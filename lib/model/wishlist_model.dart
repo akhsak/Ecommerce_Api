@@ -3,10 +3,10 @@ class WishListModel {
 
   WishListModel({this.id});
 
-  Map<String, dynamic> toJson(String token) {
-    final Map<String, dynamic> data = {'product': id};
-    final Map<String, String> headers = {'Authorization': "bearer $token"};
-    return {'data': data, 'headers': headers};
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {'productId': id};
+    // final Map<String, String> headers = {'Authorization': "bearer $token"};
+    return {'data': data, };
   }
 
   factory WishListModel.fromJson(Map<String, dynamic> json) {
