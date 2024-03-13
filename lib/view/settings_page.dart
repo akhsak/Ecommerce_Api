@@ -13,7 +13,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: const Color(0xFF202020),
+          backgroundColor: Color.fromARGB(255, 247, 245, 245),
           title: textAbel(data: 'SETTINGS', size: 20, weight: FontWeight.bold)),
       body: Container(
         padding: const EdgeInsets.all(20),
@@ -23,7 +23,7 @@ class SettingsPage extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  color: const Color(0xFF202020)),
+                  color: Colors.grey),
               child: const Row(
                 children: [
                   CircleAvatar(
@@ -36,10 +36,10 @@ class SettingsPage extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        "FARHAN",
+                        "AKHSA",
                       ),
                       Text(
-                        "farhan@gmail.com",
+                        "akhsa@gmail.com",
                       ),
                     ],
                   )

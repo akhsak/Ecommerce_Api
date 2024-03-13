@@ -5,6 +5,7 @@ import 'package:ecommerce_app/controller/store_provider.dart';
 import 'package:ecommerce_app/controller/user_provider.dart';
 import 'package:ecommerce_app/controller/wishlist_provider.dart';
 import 'package:ecommerce_app/welcome/splash_screen.dart';
+import 'package:ecommerce_app/widget/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
     ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:SplashScreen() ,
+       // home:SplashScreen() ,
+       home: Bottombar(),
       ),
     );
   }

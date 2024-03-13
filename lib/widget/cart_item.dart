@@ -23,7 +23,7 @@ class CartItem extends StatelessWidget {
                 height: mediaQuery.height * .1,
                 margin: const EdgeInsets.only(right: 5),
                 child: Image.asset(
-                  'assets/shoe.jpg',
+                  '',
                   fit: BoxFit.cover,
                 ),
               ),

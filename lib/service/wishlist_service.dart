@@ -6,7 +6,7 @@ class WishListService {
   Dio dio = Dio();
   String? wishListStatuscode;
   addToWishList(WishListModel product, String userId, String token) async {
-    final url = 'http://localhost:3000/api/users/$userId/wishlist';
+    final url = 'http://localhost:9000/api/users/$userId/wishlist';
 
     try {
       Response response = await dio.post(
@@ -31,7 +31,7 @@ class WishListService {
   }
 
   getWishListProduct(WishListModel product, String userId, String token) async {
-    final url = 'http://localhost:3000/api/users/$userId/wishlist';
+    final url = 'http://localhost:9000/api/users/$userId/wishlist';
 
     try {
       Response response = await dio.get(

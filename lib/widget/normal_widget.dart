@@ -16,7 +16,7 @@ Widget productDescDetails({String? hint, String? value}) {
       Text(
         hint!,
         style: GoogleFonts.abel(
-            fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),
+            fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black)
       ),
       Text(
         value!,
@@ -36,7 +36,7 @@ Widget productsDetails({String? hint, String? value}) {
       Text(
         hint!,
         style: GoogleFonts.abel(
-            fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),
+            fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),
       ),
       Text(
         value!,

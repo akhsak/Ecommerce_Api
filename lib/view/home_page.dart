@@ -58,8 +58,10 @@ class HomePage extends StatelessWidget {
                     if (searchValue.searchedList.isEmpty &&
                         searchProvider.searchController.text.isNotEmpty) {
                       return Center(
-                          child: Lottie.asset(
-                              'assets/Animation - empty search item.json'));
+                          child:Image.asset('assets/search_img.jpg',height: mediaQuery.height,
+                          width: mediaQuery.width,));
+                          // Lottie.asset(
+                              // 'assets/Animation - empty search.json'));
                     } else if (searchValue.searchedList.isEmpty) {
                       if (productValue.productList.isNotEmpty) {
                         final allProducts = productValue.productList;
