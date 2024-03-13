@@ -13,17 +13,15 @@ Widget productDescDetails({String? hint, String? value}) {
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Text(
-        hint!,
-        style: GoogleFonts.abel(
-            fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black)
-      ),
+      Text(hint!,
+          style: GoogleFonts.abel(
+              fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black)),
       Text(
         value!,
         style: GoogleFonts.abel(
             fontSize: 18,
             fontWeight: FontWeight.w800,
-            color:Color.fromARGB(255, 199, 51, 142),
+            color: const Color.fromARGB(255, 199, 51, 142),
             letterSpacing: 1),
       ),
     ],
@@ -43,7 +41,7 @@ Widget productsDetails({String? hint, String? value}) {
         style: GoogleFonts.abel(
             fontSize: 18,
             fontWeight: FontWeight.w800,
-            color: Color.fromARGB(255, 199, 51, 142),
+            color: const Color.fromARGB(255, 199, 51, 142),
             letterSpacing: 1),
       ),
     ],

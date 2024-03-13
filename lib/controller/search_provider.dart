@@ -4,7 +4,6 @@ import 'package:ecommerce_app/service/product_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
 class SearchProvider extends ChangeNotifier {
   ProductService productService = ProductService();
   TextEditingController searchController = TextEditingController();

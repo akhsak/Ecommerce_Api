@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, prefer_const_constructors
 
 import 'package:ecommerce_app/welcome/login_screen.dart';
 import 'package:ecommerce_app/widget/settings_widget_page.dart';
@@ -22,12 +22,11 @@ class SettingsPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.grey),
+                  borderRadius: BorderRadius.circular(30), color: Colors.grey),
               child: const Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/profile.png'),
+                    backgroundImage: AssetImage('assets/pfofile-avatar.png'),
                     radius: 40,
                   ),
                   SizedBox(

@@ -13,9 +13,6 @@ class WishListService {
       Response response = await dio.post(
         url,
         data: product.toJson()['data'],
-        // options: Options(
-        //   headers: product.toJson(token)['headers'],
-        // ),
       );
 
       if (response.statusCode == 200) {
@@ -31,17 +28,17 @@ class WishListService {
     }
   }
 
-  getWishListProduct( String userId,) async {
+  getWishListProduct(
+    String userId,
+  ) async {
     final url = 'http://localhost:9000/api/users/$userId/wishlist';
 
     try {
       Response response = await dio.get(
         url,
-        
       );
 
       if (response.statusCode == 200) {
-        
         final List<dynamic> product = response.data['data'];
 
         return product.map((e) => ProductModel.fromJson(e)).toList();
@@ -62,11 +59,6 @@ class WishListService {
       Response response = await dio.delete(
         url,
         data: productId.toJson()['data'],
-        // options: Options(
-        //   headers: {
-        //     'Authorization': 'Bearer $token',
-        //   },
-        // ),
       );
 
       if (response.statusCode == 200) {

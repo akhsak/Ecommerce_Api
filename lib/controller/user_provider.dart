@@ -3,7 +3,6 @@ import 'package:ecommerce_app/service/store_service.dart';
 import 'package:ecommerce_app/service/user_service.dart';
 import 'package:flutter/material.dart';
 
-
 class UserProvider extends ChangeNotifier {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();

@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -33,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 TextSpan(
                     text: ' Baby product',
                     style: GoogleFonts.aBeeZee(
-                        color: Color.fromARGB(255, 199, 51, 142),
+                        color: const Color.fromARGB(255, 199, 51, 142),
                         letterSpacing: .5,
                         fontSize: 25,
                         fontWeight: FontWeight.bold)),
@@ -50,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 width: mediaQuery.width * 0.8,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:  Color.fromARGB(255, 199, 51, 142),
+                      backgroundColor: const Color.fromARGB(255, 199, 51, 142),
                     ),
                     onPressed: () {
                       checkLogin(context);
@@ -66,7 +65,8 @@ class _SplashScreenState extends State<SplashScreen> {
                         SizedBox(width: 10),
                         Icon(
                           Icons.arrow_forward,
-                          color:  Colors.white,                        )
+                          color: Colors.white,
+                        )
                       ],
                     )),
               )
@@ -76,8 +76,9 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     ));
   }
-checkLogin(context) async {
-   final userLoggedIn =
+
+  checkLogin(context) async {
+    final userLoggedIn =
         await Provider.of<StoreProvider>(context, listen: false)
             .getValues('tokenId');
     if (userLoggedIn == null) {
@@ -91,7 +92,7 @@ checkLogin(context) async {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) =>  Bottombar(),
+          builder: (context) => Bottombar(),
         ),
       );
     }

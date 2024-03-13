@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
@@ -17,20 +19,20 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: obscureText ?? false,
-         validator: (value) {
-          if (value == null || value.isEmpty) {
-            return "Please enter $labelText";
-          } else if (type == "Email") {
-            if (!EmailValidator.validate(value)) {
-              return "Please enter a valid email address";
-            }
-          } else if (type == 'Password') {
-            if (value.length < 5) {
-              return 'Password should be at least 6 characters';
-            }
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "Please enter $labelText";
+        } else if (type == "Email") {
+          if (!EmailValidator.validate(value)) {
+            return "Please enter a valid email address";
           }
-          return null;
-        },
+        } else if (type == 'Password') {
+          if (value.length < 5) {
+            return 'Password should be at least 5 characters';
+          }
+        }
+        return null;
+      },
       controller: controller,
       decoration: InputDecoration(
         labelText: labelText,
@@ -39,7 +41,7 @@ class CustomTextFormField extends StatelessWidget {
           borderSide: BorderSide(color: Color.fromARGB(255, 199, 51, 142)),
         ),
         focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color:Color.fromARGB(255, 199, 51, 142)),
+          borderSide: BorderSide(color: Color.fromARGB(255, 199, 51, 142)),
         ),
         errorBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.red),

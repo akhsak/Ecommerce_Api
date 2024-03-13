@@ -1,4 +1,4 @@
-
+// ignore_for_file: use_super_parameters
 
 import 'package:ecommerce_app/controller/user_provider.dart';
 import 'package:ecommerce_app/model/user_model.dart';
@@ -8,11 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
 
-  
   final formKey2 = GlobalKey<FormState>();
 
   @override
@@ -31,7 +29,7 @@ class SignUpScreen extends StatelessWidget {
                   child: IconButton(
                     icon: const Icon(
                       Icons.arrow_back,
-                      color:Color.fromARGB(255, 199, 51, 142),
+                      color: Color.fromARGB(255, 199, 51, 142),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -40,7 +38,6 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ],
             ),
-          
             Expanded(
               child: Container(
                 height: mediaQuery.height * 0.65,
@@ -63,14 +60,13 @@ class SignUpScreen extends StatelessWidget {
                               style: GoogleFonts.abel(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
-                                color: Color.fromARGB(255, 199, 51, 142),
+                                color: const Color.fromARGB(255, 199, 51, 142),
                                 letterSpacing: 5,
                               ),
                             ),
                             const SizedBox(height: 10),
-                          
-                             CustomTextFormField(
-                              controller: getProvider. usernameController,
+                            CustomTextFormField(
+                              controller: getProvider.usernameController,
                               labelText: 'Username',
                             ),
                             const SizedBox(height: 10),
@@ -80,10 +76,9 @@ class SignUpScreen extends StatelessWidget {
                               type: 'Email',
                             ),
                             const SizedBox(height: 10),
-                           
                             const SizedBox(height: 10),
                             CustomTextFormField(
-                              controller:getProvider. passwordController,
+                              controller: getProvider.passwordController,
                               labelText: 'Password',
                               type: 'Password',
                               obscureText: true,
@@ -91,7 +86,8 @@ class SignUpScreen extends StatelessWidget {
                             const SizedBox(height: 20),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor:Color.fromARGB(255, 199, 51, 142),
+                                backgroundColor:
+                                    const Color.fromARGB(255, 199, 51, 142),
                               ),
                               onPressed: () async {
                                 if (formKey2.currentState!.validate()) {
@@ -124,18 +120,19 @@ class SignUpScreen extends StatelessWidget {
   createUser(context) async {
     final getProvider = Provider.of<UserProvider>(context, listen: false);
     final userInfo = UserModel(
-   //  name: getProvider.nameController.text.toString(),
       email: getProvider.emailController.text.toString(),
       username: getProvider.usernameController.text.toString(),
       password: getProvider.passwordController.text.toString(),
     );
     await getProvider.createUser(userInfo);
     if (getProvider.createdStatusCode == "201") {
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => LoginScreen()));
       clearController(getProvider);
     } else {}
   }
-      clearController(UserProvider controller){
+
+  clearController(UserProvider controller) {
     controller.usernameController.clear();
     controller.emailController.clear();
     controller.passwordController.clear();

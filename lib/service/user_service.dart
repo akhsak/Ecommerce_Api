@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:ecommerce_app/model/user_model.dart';
 import 'package:ecommerce_app/service/store_service.dart';
 
-
 class UserService {
   String? userStatusCode;
   String? createdStatusCode;

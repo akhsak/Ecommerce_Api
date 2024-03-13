@@ -9,11 +9,13 @@ Widget searchTextFormField({onChanged, controller}) {
         hintText: 'Search...',
         labelStyle: const TextStyle(color: Colors.grey),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Color.fromARGB(255, 199, 51, 142)),
+          borderSide:
+              const BorderSide(color: Color.fromARGB(255, 199, 51, 142)),
           borderRadius: BorderRadius.circular(30),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Color.fromARGB(255, 199, 51, 142)),
+          borderSide:
+              const BorderSide(color: Color.fromARGB(255, 199, 51, 142)),
           borderRadius: BorderRadius.circular(30),
         ),
         border: OutlineInputBorder(
@@ -24,25 +26,6 @@ Widget searchTextFormField({onChanged, controller}) {
     ),
   );
 }
-
-// Widget cartIconContainer({Function()? onPressed}) {
-//   return Container(
-//     height: 46,
-//     width: 46,
-//     decoration: const BoxDecoration(
-//       color: Color(0xFF202020),
-//       shape: BoxShape.circle,
-//       boxShadow: [
-//         BoxShadow(color: Colors.grey, blurRadius: 5),
-//       ],
-//     ),
-//     padding: const EdgeInsets.all(4),
-//     child: IconButton(
-//       onPressed: onPressed,
-//       icon: const Icon(Icons.shopping_cart_outlined),
-//     ),
-//   );
-// }
 
 SliverGridDelegateWithFixedCrossAxisCount gridDelegate(childAspectRatio) {
   return SliverGridDelegateWithFixedCrossAxisCount(

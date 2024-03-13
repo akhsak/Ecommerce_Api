@@ -4,7 +4,7 @@ class BottomProvider extends ChangeNotifier {
   int myIndex = 0;
 
   void onTap(int index) {
-      myIndex = index;
-      notifyListeners();
+    myIndex = index;
+    notifyListeners();
   }
 }

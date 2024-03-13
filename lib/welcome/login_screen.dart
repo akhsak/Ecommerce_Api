@@ -48,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                             style: GoogleFonts.abel(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
-                                color: Color.fromARGB(255, 199, 51, 142),
+                                color:const Color.fromARGB(255, 199, 51, 142),
                                 letterSpacing: 5),
                           ),
                           const SizedBox(height: 10),
@@ -65,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                           const SizedBox(height: 20),
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Color.fromARGB(255, 199, 51, 142),
+                                backgroundColor:const Color.fromARGB(255, 199, 51, 142),
                               ),
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {

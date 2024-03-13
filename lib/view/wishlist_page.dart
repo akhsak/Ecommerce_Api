@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:developer';
 
 import 'package:ecommerce_app/controller/product_provider.dart';
@@ -77,7 +79,7 @@ class WishListPage extends StatelessWidget {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    deleteWishList(context,item);
+                                    deleteWishList(context, item);
                                   },
                                   icon: Icon(Icons.delete))
                             ],
@@ -104,14 +106,12 @@ class WishListPage extends StatelessWidget {
     final store = Provider.of<StoreProvider>(context, listen: false);
     final userId = await store.getValues('userId');
     final wishProvider = Provider.of<WishListProvider>(context, listen: false);
-print("user id: $userId");
+    log("user id: $userId");
     if (userId != null) {
-      
       final productId = WishListModel(id: product.id);
       wishProvider.deleteFromWishList(productId, userId);
       if (wishProvider.wishListStatuscode == '200') {
-      } else if (wishProvider.wishListStatuscode == '500') {
-      }
+      } else if (wishProvider.wishListStatuscode == '500') {}
     } else {
       log('You are not logged in');
     }

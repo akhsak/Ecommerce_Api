@@ -6,6 +6,7 @@ import 'dart:developer';
 import 'package:ecommerce_app/controller/store_provider.dart';
 import 'package:ecommerce_app/controller/wishlist_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -53,7 +54,7 @@ class ProductContainer extends StatelessWidget {
           Text(
             product!.category ?? 'Unknown',
             style: TextStyle(
-              color: product!.category == 'men' ? Colors.blue : Colors.pink,
+              color: product!.category == 'product' ? Colors.blue : Colors.pink,
               fontSize: 12,
             ),
           ),
@@ -70,7 +71,9 @@ class ProductContainer extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () async {
-                  print(product!.id);
+                  // if (kDebugMode) {
+                  //   print(product!.id);
+                  // }
                   
                   toWishList(context, product!.id);
                 },

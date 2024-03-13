@@ -12,6 +12,6 @@ Widget textAbel({data, size, weight}) {
       style: GoogleFonts.abel(
           fontWeight: weight,
           fontSize: size,
-          color: Color.fromARGB(255, 199, 51, 142),
+          color: const Color.fromARGB(255, 199, 51, 142),
           letterSpacing: 5));
 }

@@ -4,14 +4,11 @@
 
 import 'package:ecommerce_app/controller/product_provider.dart';
 import 'package:ecommerce_app/controller/search_provider.dart';
-import 'package:ecommerce_app/model/wishlist_model.dart';
-import 'package:ecommerce_app/pages/cart_screen.dart';
 import 'package:ecommerce_app/pages/product_details.dart';
 import 'package:ecommerce_app/widget/home_gridview.dart';
 import 'package:ecommerce_app/widget/home_widget.dart';
 import 'package:ecommerce_app/widget/text_widget.dart';
 import 'package:flutter/material.dart';
-//import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 
@@ -37,16 +34,7 @@ class HomePage extends StatelessWidget {
                           searchProvider.searchController.text, context),
                       controller: searchProvider.searchController),
                   const SizedBox(width: 10),
-                  // cartIconContainer(
-                  //   onPressed: () {
-                  //     Navigator.push(
-                  //       context,
-                  //       MaterialPageRoute(
-                  //         builder: (context) => const CartScreen(),
-                //          ),
-                //       );
-                //     },
-                //   )
+                
                  ],
                ),
               const SizedBox(height: 20),
@@ -61,8 +49,7 @@ class HomePage extends StatelessWidget {
                           child:Image.asset('assets/search_img.jpg',
                           height: mediaQuery.height,
                           width: mediaQuery.width,));
-                          // Lottie.asset(
-                              // 'assets/Animation - empty search.json'));
+                         
                     } else if (searchValue.searchedList.isEmpty) {
                       if (productValue.productList.isNotEmpty) {
                         final allProducts = productValue.productList;
@@ -71,9 +58,7 @@ class HomePage extends StatelessWidget {
                           itemCount: allProducts.length,
                           itemBuilder: (context, index) {
                             final product = allProducts[index];
-                            // final wishProduct = WishListModel(
-                            //   id: product.id,
-                            // );
+                           
                             return GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -91,7 +76,6 @@ class HomePage extends StatelessWidget {
                               },
                               child: ProductContainer(
                                 product: product,
-                                // productId: wishProduct,
                               ),
                             );
                           },

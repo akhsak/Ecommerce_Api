@@ -39,7 +39,7 @@ class ProductDetailScreen extends StatelessWidget {
                   width: mediaQuery.width * 0.5,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(image: image, fit: BoxFit.cover),
+                      image: DecorationImage(image: image, fit: BoxFit.fill),
                       color: Colors.grey[500]),
                 ),
               ),
@@ -70,5 +70,4 @@ class ProductDetailScreen extends StatelessWidget {
       ),
     );
   }
-  
 }
