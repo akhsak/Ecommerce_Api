@@ -20,11 +20,11 @@ class UserService {
         log('Account created');
       } else {
         log("Account not created. Status code: ${response.statusCode}");
-        return null;
+        return;
       }
     } catch (e) {
       log("$e");
-      return null;
+      return;
     }
   }
 
