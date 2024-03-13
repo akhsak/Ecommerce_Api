@@ -71,9 +71,9 @@ class HomePage extends StatelessWidget {
                           itemCount: allProducts.length,
                           itemBuilder: (context, index) {
                             final product = allProducts[index];
-                            final wishProduct = WishListModel(
-                              id: product.id,
-                            );
+                            // final wishProduct = WishListModel(
+                            //   id: product.id,
+                            // );
                             return GestureDetector(
                               onTap: () {
                                 Navigator.push(

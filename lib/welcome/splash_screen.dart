@@ -1,9 +1,10 @@
+import 'package:ecommerce_app/controller/store_provider.dart';
 import 'package:ecommerce_app/welcome/login_screen.dart';
 import 'package:ecommerce_app/widget/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -52,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       backgroundColor:  Color.fromARGB(255, 199, 51, 142),
                     ),
                     onPressed: () {
-                      checkUserLoggedIn(context);
+                      checkLogin(context);
                     },
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -75,20 +76,24 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     ));
   }
-
-  checkUserLoggedIn(context) async {
-    final sharedPrfs = await SharedPreferences.getInstance();
-    final userLoggedIn = sharedPrfs.getBool('savekey');
-    if (userLoggedIn == null || userLoggedIn == false) {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => LoginScreen(),
-          ));
+checkLogin(context) async {
+   final userLoggedIn =
+        await Provider.of<StoreProvider>(context, listen: false)
+            .getValues('tokenId');
+    if (userLoggedIn == null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginScreen(),
+        ),
+      );
     } else {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => Bottombar(),
-      ));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>  Bottombar(),
+        ),
+      );
     }
   }
 }

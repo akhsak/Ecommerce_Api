@@ -7,7 +7,6 @@ import 'package:ecommerce_app/widget/bottom_bar.dart';
 import 'package:ecommerce_app/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 

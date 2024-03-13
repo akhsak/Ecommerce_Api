@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:ecommerce_app/controller/product_provider.dart';
 import 'package:ecommerce_app/controller/store_provider.dart';
 import 'package:ecommerce_app/controller/wishlist_provider.dart';
+import 'package:ecommerce_app/model/product_model.dart';
+import 'package:ecommerce_app/model/wishlist_model.dart';
 import 'package:ecommerce_app/widget/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -35,12 +37,7 @@ class WishListPage extends StatelessWidget {
                     child: ListView.builder(
                       itemCount: wishList.wishListItemId.length,
                       itemBuilder: (context, index) {
-                        final itemId = wishList.wishListItemId[index];
-                        final product = productItem.productList[index];
-                        final id = itemId;
-                        final allProductIds = productItem.productList
-                            .map((product) => product.id)
-                            .toList();
+                        final item = wishList.wishListItemId[index];
                         return Container(
                           height: mediaQuery.height * 0.2,
                           margin: const EdgeInsets.symmetric(
@@ -58,7 +55,7 @@ class WishListPage extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: NetworkImage(
-                                            product.image.toString()))),
+                                            item.image.toString()))),
                               ),
                               const SizedBox(width: 10),
                               Expanded(
@@ -68,11 +65,11 @@ class WishListPage extends StatelessWidget {
                                       MainAxisAlignment.spaceAround,
                                   children: [
                                     textAbel(
-                                        data: product.title.toString(),
+                                        data: item.title.toString(),
                                         size: 15,
                                         weight: FontWeight.w300),
                                     textAbel(
-                                        data: product.price.toString(),
+                                        data: item.price.toString(),
                                         size: 12,
                                         weight: FontWeight.w200)
                                   ],
@@ -80,7 +77,7 @@ class WishListPage extends StatelessWidget {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    deleteWishList(context, id);
+                                    deleteWishList(context,item);
                                   },
                                   icon: Icon(Icons.delete))
                             ],
@@ -100,23 +97,20 @@ class WishListPage extends StatelessWidget {
     final store = Provider.of<StoreProvider>(context, listen: false);
     final getPrvd = Provider.of<WishListProvider>(context, listen: false);
     final userId = await store.getValues('userId');
-    final token = await store.getValues('tokenId');
-    await getPrvd.getWishListProduct(userId, token);
+    await getPrvd.getWishListProduct(userId);
   }
 
-  Future deleteWishList(context, dynamic product) async {
+  Future deleteWishList(context, ProductModel product) async {
     final store = Provider.of<StoreProvider>(context, listen: false);
     final userId = await store.getValues('userId');
-    final token = await store.getValues('tokenId');
     final wishProvider = Provider.of<WishListProvider>(context, listen: false);
-
-    if (userId != null && token != null) {
-      final productId = product['_id'];
-      wishProvider.deleteFromWishList(productId, userId, token);
+print("user id: $userId");
+    if (userId != null) {
+      
+      final productId = WishListModel(id: product.id);
+      wishProvider.deleteFromWishList(productId, userId);
       if (wishProvider.wishListStatuscode == '200') {
-        log("Product deleted from Wishlist");
       } else if (wishProvider.wishListStatuscode == '500') {
-        log('Product already in wishlist');
       }
     } else {
       log('You are not logged in');

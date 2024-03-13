@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
+import 'package:ecommerce_app/model/product_model.dart';
 import 'package:ecommerce_app/model/wishlist_model.dart';
 
 class WishListService {
@@ -40,9 +41,10 @@ class WishListService {
       );
 
       if (response.statusCode == 200) {
-        final List<dynamic> product = response.data['data'] as List;
+        
+        final List<dynamic> product = response.data['data'];
 
-        return product;
+        return product.map((e) => ProductModel.fromJson(e)).toList();
       } else {
         log('Unsuccessful. Status code: ${response.statusCode}');
         log('Response data: ${response.data}');
@@ -53,12 +55,13 @@ class WishListService {
     }
   }
 
-  deleteFromWishList(String productId, String userId, String token) async {
+  deleteFromWishList(WishListModel productId, String userId) async {
     final url = 'http://localhost:9000/api/users/$userId/wishlist';
 
     try {
       Response response = await dio.delete(
         url,
+        data: productId.toJson()['data'],
         // options: Options(
         //   headers: {
         //     'Authorization': 'Bearer $token',
