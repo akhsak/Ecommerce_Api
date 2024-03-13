@@ -11,7 +11,7 @@ import 'package:ecommerce_app/widget/home_gridview.dart';
 import 'package:ecommerce_app/widget/home_widget.dart';
 import 'package:ecommerce_app/widget/text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+//import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 
@@ -58,7 +58,8 @@ class HomePage extends StatelessWidget {
                     if (searchValue.searchedList.isEmpty &&
                         searchProvider.searchController.text.isNotEmpty) {
                       return Center(
-                          child:Image.asset('assets/search_img.jpg',height: mediaQuery.height,
+                          child:Image.asset('assets/search_img.jpg',
+                          height: mediaQuery.height,
                           width: mediaQuery.width,));
                           // Lottie.asset(
                               // 'assets/Animation - empty search.json'));
