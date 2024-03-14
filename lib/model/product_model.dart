@@ -22,15 +22,5 @@ class ProductModel {
     price = json['price'];
     image = json['image'];
   }
-  //  Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> data = {
-  //     '_id': id,
-  //     'title': title,
-  //     'description': description,
-  //     'category': category,
-  //     'price': price,
-  //     'image': image,
-  //   };
-  //   return data;
-  // }
+ 
 }
