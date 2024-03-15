@@ -1,9 +1,11 @@
 // ignore_for_file: use_build_context_synchronously, prefer_const_constructors
 
+import 'package:ecommerce_app/controller/bottom_provider.dart';
 import 'package:ecommerce_app/welcome/login_screen.dart';
 import 'package:ecommerce_app/widget/settings_widget_page.dart';
 import 'package:ecommerce_app/widget/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -60,6 +62,7 @@ class SettingsPage extends StatelessWidget {
                         builder: (context) => LoginScreen(),
                       ),
                       (route) => false);
+                      Provider.of<BottomProvider>(context,listen: false).myIndex=0;
                 },
                 child: settingPageCard('LOG OUT', Icons.logout_outlined))
           ],

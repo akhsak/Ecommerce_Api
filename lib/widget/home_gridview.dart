@@ -1,11 +1,9 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
-
 import 'dart:developer';
 
 import 'package:ecommerce_app/controller/store_provider.dart';
 import 'package:ecommerce_app/controller/wishlist_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
-import 'package:flutter/foundation.dart';
+import 'package:ecommerce_app/model/wishlist_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +17,11 @@ class ProductContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final wishProvider = Provider.of<WishListProvider>(context, listen: false);
     final mediaQuery = MediaQuery.of(context);
+    final isAddedToWishlist =
+        wishProvider.wishListItemId.any((element) => element.id == product!.id);
+
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -69,17 +71,25 @@ class ProductContainer extends StatelessWidget {
                   fontSize: 14,
                 ),
               ),
-              IconButton(
-                onPressed: () async {
-                  if (kDebugMode) {
-                    print(product!.id);
-                  }
-
-                  toWishList(context, product!.id);
-                },
-                icon: const Icon(
-                  Icons.favorite_outline,
-                  color: Colors.black,
+              Consumer<WishListProvider>(
+                builder: (context, value, child) => IconButton(
+                  onPressed: () async {
+                    if (isAddedToWishlist) {
+                      await value.deleteFromWishList(
+                          product!.id as WishListModel, 'userId');
+                    } else {
+                      toWishList(context, product!.id);
+                    }
+                  },
+                  icon: isAddedToWishlist
+                      ? const Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+                        )
+                      : const Icon(
+                          Icons.favorite_outline,
+                          color: Colors.black,
+                        ),
                 ),
               )
             ],
@@ -89,45 +99,21 @@ class ProductContainer extends StatelessWidget {
     );
   }
 
-  Future toWishList(context, product) async {
+  Future<void> toWishList(context, productId) async {
     final store = Provider.of<StoreProvider>(context, listen: false);
     final userId = await store.getValues('userId');
     final token = await store.getValues('tokenId');
     final wishProvider = Provider.of<WishListProvider>(context, listen: false);
 
     if (userId != null && token != null) {
-      wishProvider.addToWishList(
-        product,
-        userId,
-      );
+      await wishProvider.addToWishList(productId, userId);
       if (wishProvider.wishListStatuscode == '200') {
         log("Product added to Wishlist");
       } else if (wishProvider.wishListStatuscode == '500') {
         log('Product already in wishlist');
       }
     } else {
-      log('Your are not loged in ');
-    }
-  }
-
-  Future toWishLis(context, productId) async {
-    final store = Provider.of<StoreProvider>(context, listen: false);
-    final userId = await store.getValues('userId');
-    final token = await store.getValues('tokenId');
-    final wishProvider = Provider.of<WishListProvider>(context, listen: false);
-
-    if (userId != null && token != null) {
-      wishProvider.addToWishList(
-        productId.id,
-        userId,
-      ); // Pass productId.id instead of productId
-      if (wishProvider.wishListStatuscode == '200') {
-        log("Product added to Wishlist");
-      } else if (wishProvider.wishListStatuscode == '500') {
-        log('Product already in wishlist');
-      }
-    } else {
-      log('You are not logged in');
+      log('Your are not logged in ');
     }
   }
 }
