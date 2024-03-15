@@ -69,12 +69,15 @@ class _SplashScreenState extends State<SplashScreen> {
                         )
                       ],
                     )),
-              )
+                    
+              ),
+              
             ],
           ))
         ],
       ),
     ));
+    
   }
 
   checkLogin(context) async {
@@ -98,3 +101,4 @@ class _SplashScreenState extends State<SplashScreen> {
     }
   }
 }
+

@@ -2,7 +2,7 @@
 
 import 'package:ecommerce_app/controller/user_provider.dart';
 import 'package:ecommerce_app/model/user_model.dart';
-import 'package:ecommerce_app/welcome/login_screen.dart';
+import 'package:ecommerce_app/widget/bottom_bar.dart';
 import 'package:ecommerce_app/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -103,7 +103,9 @@ class SignUpScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 15),
+                          
                           ],
+                          
                         ),
                       ),
                     ),
@@ -127,7 +129,7 @@ class SignUpScreen extends StatelessWidget {
     await getProvider.createUser(userInfo);
     if (getProvider.createdStatusCode == "201") {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => LoginScreen()));
+          context, MaterialPageRoute(builder: (context) => Bottombar()));
       clearController(getProvider);
     } else {}
   }

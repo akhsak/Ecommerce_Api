@@ -1,5 +1,3 @@
-
-
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:ecommerce_app/controller/product_provider.dart';
@@ -9,8 +7,8 @@ import 'package:ecommerce_app/widget/home_gridview.dart';
 import 'package:ecommerce_app/widget/home_widget.dart';
 import 'package:ecommerce_app/widget/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
-
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key});
@@ -29,27 +27,35 @@ class HomePage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  searchTextFormField(
+                  Expanded(
+                    child: searchTextFormField(
                       onChanged: (value) => searchProvider.search(
-                          searchProvider.searchController.text, context),
-                      controller: searchProvider.searchController),
+                        searchProvider.searchController.text,
+                        context,
+                      ),
+                      controller: searchProvider.searchController,
+                    ),
+                  ),
                   const SizedBox(width: 10),
-                
-                 ],
-               ),
+                ],
+              ),
               const SizedBox(height: 20),
               textAmaranth(data: 'HOME', size: 30, weight: FontWeight.w700),
               const SizedBox(height: 10),
               Expanded(
                 child: Consumer2<SearchProvider, ProductProvider>(
                   builder: (context, searchValue, productValue, child) {
-                    if (searchValue.searchedList.isEmpty &&
+                    if (productValue.isLoading) {
+                      return const Center(
+                        child: SpinKitCircle(
+                          color: Colors.grey,
+                        ),
+                      );
+                    } else if (searchValue.searchedList.isEmpty &&
                         searchProvider.searchController.text.isNotEmpty) {
-                      return Center(
-                          child:Image.asset('assets/search_img.jpg',
-                          height: mediaQuery.height,
-                          width: mediaQuery.width,));
-                         
+                      return const Center(
+                        child: Text('No results found'),
+                      );
                     } else if (searchValue.searchedList.isEmpty) {
                       if (productValue.productList.isNotEmpty) {
                         final allProducts = productValue.productList;
@@ -58,19 +64,20 @@ class HomePage extends StatelessWidget {
                           itemCount: allProducts.length,
                           itemBuilder: (context, index) {
                             final product = allProducts[index];
-                           
                             return GestureDetector(
                               onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => ProductDetailScreen(
-                                        image: NetworkImage(
-                                            product.image.toString()),
-                                        category: product.category,
-                                        description: product.description,
-                                        title: product.title,
-                                        price: product.price),
+                                      image: NetworkImage(
+                                        product.image.toString(),
+                                      ),
+                                      category: product.category,
+                                      description: product.description,
+                                      title: product.title,
+                                      price: product.price,
+                                    ),
                                   ),
                                 );
                               },
@@ -82,10 +89,12 @@ class HomePage extends StatelessWidget {
                         );
                       } else {
                         return Center(
-                            child: textAbel(
-                                data: 'NO ITEMS ADDED',
-                                size: 20,
-                                weight: FontWeight.w700));
+                          child: textAbel(
+                            data: 'NO ITEMS ADDED',
+                            size: 20,
+                            weight: FontWeight.w700,
+                          ),
+                        );
                       }
                     } else {
                       return GridView.builder(
@@ -98,23 +107,25 @@ class HomePage extends StatelessWidget {
                         itemCount: searchValue.searchedList.length,
                         itemBuilder: (context, index) {
                           final product = searchValue.searchedList[index];
-
                           return GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ProductDetailScreen(
-                                        image: NetworkImage(
-                                            product.image.toString()),
-                                        category: product.category,
-                                        description: product.description,
-                                        title: product.title,
-                                        price: product.price),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ProductDetailScreen(
+                                    image: NetworkImage(
+                                      product.image.toString(),
+                                    ),
+                                    category: product.category,
+                                    description: product.description,
+                                    title: product.title,
+                                    price: product.price,
                                   ),
-                                );
-                              },
-                              child: ProductContainer(product: product ,));
+                                ),
+                              );
+                            },
+                            child: ProductContainer(product: product),
+                          );
                         },
                       );
                     }

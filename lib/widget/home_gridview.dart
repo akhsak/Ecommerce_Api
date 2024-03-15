@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
-
 import 'dart:developer';
 
 import 'package:ecommerce_app/controller/store_provider.dart';
@@ -10,12 +9,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
 class ProductContainer extends StatelessWidget {
   final ProductModel? product;
- 
 
-  const ProductContainer({super.key, this.product,});
+  const ProductContainer({
+    super.key,
+    this.product,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +71,10 @@ class ProductContainer extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () async {
-                  // if (kDebugMode) {
-                  //   print(product!.id);
-                  // }
-                  
+                  if (kDebugMode) {
+                    print(product!.id);
+                  }
+
                   toWishList(context, product!.id);
                 },
                 icon: const Icon(
@@ -96,7 +96,10 @@ class ProductContainer extends StatelessWidget {
     final wishProvider = Provider.of<WishListProvider>(context, listen: false);
 
     if (userId != null && token != null) {
-      wishProvider.addToWishList(product, userId,);
+      wishProvider.addToWishList(
+        product,
+        userId,
+      );
       if (wishProvider.wishListStatuscode == '200') {
         log("Product added to Wishlist");
       } else if (wishProvider.wishListStatuscode == '500') {
@@ -114,8 +117,10 @@ class ProductContainer extends StatelessWidget {
     final wishProvider = Provider.of<WishListProvider>(context, listen: false);
 
     if (userId != null && token != null) {
-      wishProvider.addToWishList(productId.id, userId,
-          ); // Pass productId.id instead of productId
+      wishProvider.addToWishList(
+        productId.id,
+        userId,
+      ); // Pass productId.id instead of productId
       if (wishProvider.wishListStatuscode == '200') {
         log("Product added to Wishlist");
       } else if (wishProvider.wishListStatuscode == '500') {
@@ -124,5 +129,5 @@ class ProductContainer extends StatelessWidget {
     } else {
       log('You are not logged in');
     }
- }
+  }
 }

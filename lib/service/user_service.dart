@@ -9,21 +9,22 @@ class UserService {
   Dio dio = Dio();
   StoreService store = StoreService();
 
-  Future<void> createUser(UserModel userInfo) async {
+  Future<bool> createUser(UserModel userInfo) async {
     const url = 'http://localhost:9000/api/users/register';
     try {
       Response response = await dio.post(url, data: userInfo.toJson());
       createdStatusCode = response.statusCode.toString();
 
       if (response.statusCode == 201) {
-        log('Account created');
+         log('Account created');
+        return true;
       } else {
         log("Account not created. Status code: ${response.statusCode}");
-        return;
+        return false;
       }
     } catch (e) {
-      log("$e");
-      return;
+      log("error message: $e");
+      return false;
     }
   }
 
@@ -51,8 +52,8 @@ class UserService {
         return false;
       }
     } catch (e) {
-      log("$e");
-      rethrow;
+      log(" error meassage: $e");
+      return false;
     }
   }
 }
