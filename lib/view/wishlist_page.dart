@@ -94,6 +94,26 @@ class WishListPage extends StatelessWidget {
       ),
     );
   }
+    Future toWishList(context, product) async {
+    final store = Provider.of<StoreProvider>(context, listen: false);
+    final userId = await store.getValues('userId');
+    final token = await store.getValues('tokenId');
+    final wishProvider = Provider.of<WishListProvider>(context, listen: false);
+
+    if (userId != null && token != null) {
+      wishProvider.addToWishList(
+        product,
+        userId,
+      );
+      if (wishProvider.wishListStatuscode == '200') {
+        log("Product added to Wishlist");
+      } else if (wishProvider.wishListStatuscode == '500') {
+        log('Product already in wishlist');
+      }
+    } else {
+      log('Your are not loged in ');
+    }
+  }
 
   Future getWishList(context) async {
     final store = Provider.of<StoreProvider>(context, listen: false);
@@ -101,6 +121,7 @@ class WishListPage extends StatelessWidget {
     final userId = await store.getValues('userId');
     await getPrvd.getWishListProduct(userId);
   }
+  
 
   Future deleteWishList(context, ProductModel product) async {
     final store = Provider.of<StoreProvider>(context, listen: false);
