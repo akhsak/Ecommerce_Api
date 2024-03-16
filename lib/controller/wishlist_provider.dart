@@ -7,17 +7,15 @@ class WishListProvider extends ChangeNotifier {
   final WishListService _wishListService = WishListService();
   List<ProductModel> wishListItemId = [];
   String? wishListStatuscode;
-  //bool isAddWish= false;
   
 
 
   Future<void> addToWishList(String productId, String userId) async {
-   // isAddWish=false;
     final product = WishListModel(id: productId);
     await _wishListService.addToWishList(product, userId);
 
     wishListStatuscode = _wishListService.wishListStatuscode;
-   // isAddWish =true;
+    
     notifyListeners();
   }
 
