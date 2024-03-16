@@ -23,14 +23,15 @@ class _SplashScreenState extends State<SplashScreen> {
         children: <Widget>[
           Expanded(
               child: Lottie.asset('assets/Animation - 1709715590668 (1).json',
-                  fit: BoxFit.cover)),
+                  )),
           Expanded(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               RichText(
                   text: TextSpan(children: [
                 TextSpan(
-                    text: ' Baby product',
+                    text: 'Baby product',             
                     style: GoogleFonts.aBeeZee(
                         color: const Color.fromARGB(255, 199, 51, 142),
                         letterSpacing: .5,
@@ -39,10 +40,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 const WidgetSpan(
                   child: SizedBox(height: 10),
                 ),
-                TextSpan(
-                    text: 'babyss...',
-                    style: GoogleFonts.abel(color: Colors.white, fontSize: 17))
-              ])),
+              
+               ])
+              ),
               const SizedBox(height: 60),
               SizedBox(
                 height: mediaQuery.height * 0.1,
